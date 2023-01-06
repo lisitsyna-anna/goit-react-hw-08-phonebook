@@ -16,12 +16,7 @@ export const Header = () => {
 
   return (
     <>
-      <AppBar
-        position="static"
-        sx={{
-          maxWidth: 'xl',
-        }}
-      >
+      <AppBar position="static">
         <Toolbar>
           <Typography
             component={Link}

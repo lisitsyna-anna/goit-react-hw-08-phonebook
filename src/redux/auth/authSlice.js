@@ -49,7 +49,10 @@ const authSlice = createSlice({
       state.authError = null;
       state.authIsLoading = false;
     },
-    [refreshUser.pending]: handlePending,
+    [refreshUser.pending](state) {
+      state.isRefreshing = true;
+      state.authIsLoading = false;
+    },
     [refreshUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
@@ -57,7 +60,9 @@ const authSlice = createSlice({
       state.authError = null;
       state.authIsLoading = false;
     },
-    [refreshUser.rejected](state) {
+    [refreshUser.rejected](state, action) {
+      state.authError = action.payload;
+      state.isRefreshing = false;
       state.authIsLoading = false;
     },
   },

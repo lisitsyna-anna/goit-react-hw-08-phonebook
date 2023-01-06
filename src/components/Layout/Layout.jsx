@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { Header } from 'components/Header';
 import { Suspense } from 'react';
 import { Container, Typography, Link } from '@mui/material';
+import { FadeLoader } from 'react-spinners';
 
 export const Layout = () => {
   return (
@@ -11,7 +12,17 @@ export const Layout = () => {
       style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
     >
       <Header />
-      <Suspense fallback={null}>
+      <Suspense
+        fallback={
+          <FadeLoader
+            color="#1976d2"
+            cssOverride={{
+              display: 'block',
+              margin: '0 auto',
+            }}
+          />
+        }
+      >
         <main>
           <Container
             style={{ maxWidth: 1240, margin: '0 auto', padding: '0 16px' }}
